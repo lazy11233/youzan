@@ -1,5 +1,6 @@
 let url = {
-    hotLists: '/index/hotLists'
+    hotLists: '/index/hotLists',
+    banner: '/index/banner'
 }
 //开发环境 和 生产环境切换的url
 //IP接口 和 
