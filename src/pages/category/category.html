@@ -127,7 +127,9 @@
               v-if="topIndex > 0 && subData">
               <h3 class="category-title">热门品牌 </h3>
               <ul class="category-content">
-                <li class="category-item js-category-item" data-item-id="85" v-for="list in subData.brandList" :data-item-name="list.name">
+                <li class="category-item js-category-item" 
+                @click="toSearch(list)"
+                data-item-id="85" v-for="list in subData.brandList" :data-item-name="list.name">
                   <img :src="list.img" :alt="list.name" class="category-img">
                   <span class="category-item-name">
                     {{list.name}}</span>
@@ -136,7 +138,9 @@
               </ul>
               <h3 class="category-title"> 热门分类 </h3>
               <ul class="category-content">
-                <li class="category-item js-category-item" data-item-id="10" v-for="list in subData.categoryList" :data-item-name="list.name">
+                <li class="category-item js-category-item"
+                @click="toSearch(list)"
+                data-item-id="10" v-for="list in subData.categoryList" :data-item-name="list.name">
                   <img :src="list.img" :alt="list.img" class="category-img">
                   <span class="category-item-name">
                     {{list.name}}</span>

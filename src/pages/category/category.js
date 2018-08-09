@@ -4,7 +4,8 @@ import './category.css';
 import Vue from 'vue';
 import axios from 'axios';
 
-import Foot from 'components/Foot.vue';
+import mixin from 'js/mixin.js';
+// import Foot from 'components/Foot.vue
 import url from 'js/api.js'
 
 new Vue({
@@ -35,28 +36,32 @@ new Vue({
             axios.post(url.rank).then(res => {
                 this.rankData = res.data.data;
             })
+        },
+        toSearch(list) {
+            location.href = `search.html?keyword=${list.name}&id=${list.id}`;
         }
     },
     created() {
         this.getTopList();
         this.getSubList(0,0);
     },
-    components: {
-        Foot
-    },
-    filters: {
-        currency(price){
-            var rlt = price;
-            var xds = price.toString().split('.');
-            if(xds.length === 1){
-                rlt = rlt + ".00";
-            }else{
-                if(xds[1].length < 2){
-                    rlt = rlt + "0";
-                }
-            }
-            return rlt;
+    // components: {
+    //     Foot
+    // },
+    // filters: {
+    //     currency(price){
+    //         var rlt = price;
+    //         var xds = price.toString().split('.');
+    //         if(xds.length === 1){
+    //             rlt = rlt + ".00";
+    //         }else{
+    //             if(xds[1].length < 2){
+    //                 rlt = rlt + "0";
+    //             }
+    //         }
+    //         return rlt;
 
-        }
-    }
+    //     }
+    // }
+    mixins: [mixin]
 })
