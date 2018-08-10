@@ -4,7 +4,10 @@ let url = {
     topList:    '/category/topList',
     subList:    '/category/subList',
     rank:       '/category/rank',
-    searchList: '/search/list'
+    searchList: '/search/list',
+    details:    '/goods/details',
+    deal:       '/goods/deal',
+    addCart:    '/cart/add'
 }
 //开发环境 和 生产环境切换的url
 //IP接口 和 

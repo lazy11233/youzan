@@ -51,7 +51,7 @@
       <div class="search-wrap js-waterfull-wrap">
         <ul class="js-list">
             <li class="goods-item" v-for="good in searchList">
-                <a href="https://h5.youzan.com/v2/showcase/goods?alias=2755moo9i2r1c&amp;source=yzapp&amp;f_platform=yzapp">
+                <a :href="'goods.html?id='+good.id">
                   <div class="thumb">
                     <img :src="good.img">
                     <i class="sell-out" v-if="good.isOut"></i>
