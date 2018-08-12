@@ -2,7 +2,7 @@
     <div>
         <div class="container " style="min-height: 597px;">
             <div class="block-list address-list section section-first js-no-webview-block"  v-if="lists && lists.length">
-                <a class="block-item js-address-item address-item " @click="toEdit"
+                <a class="block-item js-address-item address-item " @click="toEdit(list)"
                     v-for="list in lists" :class="{'address-item-default':list.isDefault}"
                     :key="list.id">
                     <div class="address-title">{{list.name}} {{list.tel}}</div>
@@ -11,7 +11,8 @@
                 </a>
             </div>
             <div class="block stick-bottom-row center">
-                <router-link  class="btn btn-blue js-no-webview-block js-add-address-btn" to="/address/form">
+                <router-link  class="btn btn-blue js-no-webview-block js-add-address-btn" 
+                :to="{name:'form',query:{type: 'add'}}">
                 新增地址
                 </router-link>
             </div>
@@ -27,15 +28,16 @@ import AddressService from 'js/addressService.js';
             }
         },
         created() {
-    AddressService.list().then(res => {
-        console.log(res);
-        this.lists = res.data.lists;
-        console.log(this.lists);
-    })
+            AddressService.list().then(res => {
+                this.lists = res.data.lists;
+            })
         },
         methods: {
-            toEdit() {
-                this.$router.push({path: '/address/form'})
+            toEdit(list) {
+                this.$router.push({name: 'form',query: {
+                    type: 'edit',
+                    instance: list
+                }})
             }
         }
     }
