@@ -7,7 +7,11 @@ let url = {
     searchList: '/search/list',
     details:    '/goods/details',
     deal:       '/goods/deal',
-    addCart:    '/cart/add'
+    addCart:    '/cart/add',
+    cartLists:  '/cart/list',
+    cartReduce: '/cart/reduce',
+    cartRemove: '/cart/remove',
+    cartMremove:'/cart/mremove'
 }
 //开发环境 和 生产环境切换的url
 //IP接口 和 
