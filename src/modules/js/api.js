@@ -11,7 +11,12 @@ let url = {
     cartLists:  '/cart/list',
     cartReduce: '/cart/reduce',
     cartRemove: '/cart/remove',
-    cartMremove:'/cart/mremove'
+    cartMremove:'/cart/mremove',
+    addressLists: '/address/list',
+    addressAdd:  '/address/add',
+    addressRemove:'/address/remove',
+    addressUpdata:'/address/update',
+    addressSetDefault:'address/setDefault'
 }
 //开发环境 和 生产环境切换的url
 //IP接口 和 
