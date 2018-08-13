@@ -21,31 +21,22 @@ export default {
     },
     methods: {
         add() {
-            let {name,tel,provinceValue,districtValue,address} = this;
-            let data = {name,tel,provinceValue,districtValue,address};
-            if(this.type==='add') {
-                data.id = this.id;
-                Address.add(data).then(res => {
-                    this.$router.go(-1);
-                })
-            }else if(this.type === 'edit'){
-                Address.update(data).then(res => {
-                    this.$router.go(-1);
-                })
+            let { name, tel, provinceValue, districtValue, address } = this;
+            let data = { name, tel, provinceValue, districtValue, address };
+            if (this.type === 'add') {
+                this.$store.dispatch('addAction', data);
+            } else if (this.type === 'edit') {
+                this.$store.dispatch('update', data);
             }
         },
         remove() {
-            if(window.confirm("确认删除吗？")){
-                Address.remove(this.id).then(res => {
-                    this.$router.go(-1);
-                })
+            if (window.confirm("确认删除吗？")) {
+                this.$store.dispatch('removeAction', this.id);
             }
         },
         setDefault() {
-            if(window.confirm("将当前地址设置为默认地址？")){
-                Address.setDefault(this.id).then(res => {
-                    this.$router.go(-1);
-                })
+            if (window.confirm("将当前地址设置为默认地址？")) {
+                this.$store.dispatch('setDefaultAction', this.id);
             }
         }
     },
@@ -54,7 +45,7 @@ export default {
         console.log(query);
         this.type = query.type;
         this.instance = query.instance;
-        if(this.type === 'type'){
+        if (this.type === 'type') {
             let ad = this.instance;
             this.provinceValue = parseInt(ad.provinceValue);
             this.name = ad.name;
@@ -64,8 +55,11 @@ export default {
         }
     },
     watch: {
-        provinceValue(val){
-            if(val === -1) {
+        lists() {
+            this.$router.go(-1);
+        },
+        provinceValue(val) {
+            if (val === -1) {
                 return;
             }
             let list = this.addressData.list;
@@ -74,14 +68,14 @@ export default {
             })
             this.cityList = list[index].children;
             this.cityValue = -1;
-            this.districtValue =-1;
-            if(this.type === 'edit') {
+            this.districtValue = -1;
+            if (this.type === 'edit') {
                 this.cityValue = parseInt(this.instance.cityValue);
             }
 
         },
-        cityValue(val){
-            if(val === -1) {
+        cityValue(val) {
+            if (val === -1) {
                 return;
             }
             let list = this.cityList;
@@ -90,7 +84,7 @@ export default {
             })
             this.districtList = list[index].children;
             this.districtValue = -1;
-            if(this.type === 'edit') {
+            if (this.type === 'edit') {
                 this.districtValue = parseInt(this.instance.districtValue);
             }
         }

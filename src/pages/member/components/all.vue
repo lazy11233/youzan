@@ -20,17 +20,20 @@
     </div>
 </template>
 <script>
-import AddressService from 'js/addressService.js';
+// import AddressService from 'js/addressService.js';
     export default {
-        data() {
-            return {
-                lists: null
-            }
-        },
+       computed: {
+           lists() {
+               return this.$store.state.lists;
+           }
+       },
         created() {
-            AddressService.list().then(res => {
-                this.lists = res.data.lists;
-            })
+            // AddressService.list().then(res => {
+            //     this.lists = res.data.lists;
+            // })
+            if(!this.lists) {
+                this.$store.dispatch('getLists');
+            }
         },
         methods: {
             toEdit(list) {
